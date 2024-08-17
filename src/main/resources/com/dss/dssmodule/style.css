@@ -1,0 +1,152 @@
+#menuMainPage {
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-font-family: Arial;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+}
+
+#toolBar {
+    -fx-background-color:  rgb(38, 42, 50);
+}
+
+#secondAnchorPane {
+    -fx-background-color:  rgb(38, 42, 50);
+}
+#conditionAnchor{
+    -fx-background-color:  rgb(38, 42, 50);
+}
+
+/* STYLE ACCORDION */
+
+.accordion .titled-pane .title {
+    -fx-background-color: rgb(38, 42, 50, 0.2);
+    -fx-padding: 0.3333em 0.75em 0.3333em -0.5em;
+    -fx-font-family: Arial;
+    -fx-font-weight: bold;
+}
+
+.accordion .titled-pane>*.content {
+    -fx-font-family: Arial;
+}
+
+.accordion .titled-pane>.title>.arrow-button>.arrow {
+    -fx-background-color: transparent;
+}
+
+/* STYLE SAVE BUTTON ACCORDION */
+
+.save-button {
+    -fx-background-color: rgb(38, 42, 50);
+    -fx-text-fill: rgb(255, 255, 255);
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-font-family: Arial;
+}
+
+/* STYLE TAB */
+
+.tab {
+    -fx-background-color: white;
+    -fx-background-insets: 0.0;
+    -fx-background-radius: 0.0;
+    -fx-padding: 0 30 0 30;
+}
+
+.tab-label {
+    -fx-padding: 1px;
+}
+
+.tab .tab-label {
+    -fx-background-color: transparent;
+    -fx-alignment: center;
+    -fx-font-size: 14px;
+}
+
+.tab-pane .tab-header-area {
+    -fx-padding: 0 0 10 40;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab:selected {
+    -fx-border-width: 0 0 3 0;
+    -fx-border-color: rgb(38, 42, 50);
+}
+
+/* STYLE TOOL BUTTONS */
+
+#buttonAddElement {
+    -fx-min-width: 150px;
+    -fx-text-fill: rgb(255, 255, 255);
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-font-family: Arial;
+}
+
+#buttonAddText {
+    -fx-min-width: 150px;
+    -fx-text-fill: rgb(255, 255, 255);
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-font-family: Arial;
+}
+
+#importanseButtonCalculate, #addButton, #quitButton {
+    -fx-background-color: rgb(38, 42, 50);
+    -fx-text-fill: rgb(255, 255, 255);
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-font-family: Arial;
+}
+
+/* STYLE BLOCKS HIERARCHY */
+
+.block-hierarchy {
+    -fx-text-fill: black;
+    -fx-font-family: sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-background-color: rgb(35, 170, 89, 0.5);
+}
+
+.block-hierarchy:hover{
+
+}
+
+/* STYLE TEXT ON PANEL */
+
+.text-on-panel {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-font-family: sans-serif;
+    -fx-background-color: blue;
+}
+
+/* STYLE ARROW */
+
+.arrow {
+    -fx-stroke-width: 2;
+    -fx-stroke: black;
+}
+
+/* STYLE WEIGHT */
+
+.weight {
+    -fx-background-color: #f8cccc;
+}
+
+.text-weight {
+    -fx-text-fill: #fdeded;
+}
+
+/* STYLE GRIDPANE */
+.text-gridpane{
+    -fx-text-fill: rgb(255, 255, 255);
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-font-family: Arial;
+}

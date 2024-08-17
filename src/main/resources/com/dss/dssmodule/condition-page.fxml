@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="conditionAnchor" prefHeight="400.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demofx.Condition">
+    <children>
+        <Pane layoutX="114.0" layoutY="74.0" prefHeight="84.0" prefWidth="348.0">
+            <children>
+                <TextField fx:id="condition" layoutY="1.0" prefHeight="83.0" prefWidth="357.0" />
+            </children>
+        </Pane>
+      <Pane layoutX="114.0" layoutY="176.0" prefHeight="147.0" prefWidth="357.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);">
+         <children>
+            <Button fx:id="addButton" layoutX="186.0" layoutY="61.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="151.0" style="-fx-background-color: rgb(38, 42, 50);" text="Добавить" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="quitButton" layoutX="20.0" layoutY="61.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="151.0" style="-fx-background-color: rgb(38, 42, 50);" text="Перейти к расчетам" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="76.0" layoutY="21.0" prefHeight="21.0" prefWidth="205.0" style="-fx-font-size: 15; -fx-font-weight: bold; -fx-effect: innershadow( gaussian, rgba( 0, 0, 0, 0.5 ), 10, 0, 5, 5 );" text="Переменные состояния" textFill="#63c689">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="114.0" layoutY="106.0" prefHeight="21.0" prefWidth="65.0" style="-fx-font-size: 15; -fx-font-weight: bold; -fx-effect: innershadow( gaussian, rgba( 0, 0, 0, 0.5 ), 10, 0, 5, 5 );" text="Счёт:" textFill="#63c689">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelCount" alignment="CENTER" layoutX="186.0" layoutY="106.0" prefHeight="21.0" prefWidth="37.0" style="-fx-font-size: 15; -fx-font-weight: bold; -fx-effect: innershadow( gaussian, rgba( 0, 0, 0, 0.5 ), 10, 0, 5, 5 );" textFill="#63c689">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+    </children>
+</AnchorPane>
