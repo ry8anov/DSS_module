@@ -12,7 +12,7 @@ public class BlockHierarchy extends Button {
     public int ID_PANE;
     public ArrayList<BlockHierarchy> relatedBLocks;
 
-    public BlockHierarchy(String name){
+    public BlockHierarchy(String name) {
         super(name);
         setCursor(Cursor.HAND);
         setMinWidth(130);

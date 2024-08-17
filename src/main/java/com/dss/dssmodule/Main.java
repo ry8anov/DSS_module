@@ -18,10 +18,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-page.fxml")));
-        primaryStage.setTitle("Расчет оценки некоммерческой недвижимости");
+        primaryStage.setTitle("DSS module");
         primaryStage.setResizable(false);
         Scene scene = new Scene(root, 1400, 1000);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        primaryStage.getIcons().add(new Image(String.valueOf(getClass().getResource("LOGO.png"))));
         primaryStage.setScene(scene);
         primaryStage.show();
     }

@@ -31,7 +31,7 @@ public class MainPageController {
     public static List<Weight> weights = new ArrayList<>();
     public static BlockHierarchy currentBlockHierarchy;
     public double vectorWeight[];
-    public List <Double> ListWeight = new ArrayList<>();
+    public List<Double> ListWeight = new ArrayList<>();
     public Double Ob1;
     public Double Ob3;
 
@@ -80,7 +80,7 @@ public class MainPageController {
             currentBlockHierarchy.setOnMouseDragged(mouseMoveBlockHandler);
             currentBlockHierarchy.setOnMouseClicked(mouseSelectBlockHandler);
             Weight weight = new Weight(currentBlockHierarchy.getLayoutX(),
-                                       currentBlockHierarchy.getLayoutY());
+                    currentBlockHierarchy.getLayoutY());
             weights.add(weight);
             currentPane.getChildren().addAll(currentBlockHierarchy, weight, weight.text);
             addInfoBlocks(currentBlockHierarchy);
@@ -104,7 +104,7 @@ public class MainPageController {
         @Override
         public void handle(MouseEvent mouseEvent) {
             BlockHierarchy currentBlockHierarchy = (BlockHierarchy) mouseEvent.getSource();
-            if(mouseEvent.getButton() == MouseButton.SECONDARY){
+            if (mouseEvent.getButton() == MouseButton.SECONDARY) {
                 currentBlockHierarchy.setLayoutX(mouseEvent.getSceneX() - currentBlockHierarchy.getWidth() * 3.5);
                 currentBlockHierarchy.setLayoutY(mouseEvent.getSceneY() - currentBlockHierarchy.getHeight() * 1.5);
                 updateWeight(currentBlockHierarchy);
@@ -126,14 +126,14 @@ public class MainPageController {
                 currentSelectedBlocks++;
                 if (currentSelectedBlocks % 2 == 0 && currentSelectedBlocks != 0) {
                     BlockHierarchy preBlockHierarchy = selectedButtons.get(currentSelectedBlocks - 2);
-                    if(currentBlockHierarchy.equals(preBlockHierarchy)) {
+                    if (currentBlockHierarchy.equals(preBlockHierarchy)) {
                         return;
                     }
                     preBlockHierarchy.relatedBLocks.add(currentBlockHierarchy);
                     currentBlockHierarchy.relatedBLocks.add(preBlockHierarchy);
                     double startX, startY, endX, endY;
                     boolean isStart = true;
-                    if(compareHeight(preBlockHierarchy, currentBlockHierarchy)){
+                    if (compareHeight(preBlockHierarchy, currentBlockHierarchy)) {
                         startX = preBlockHierarchy.getBoundsInParent().getCenterX();
                         startY = preBlockHierarchy.getBoundsInParent().getCenterY() + preBlockHierarchy.getHeight() / 2;
                         endX = currentBlockHierarchy.getBoundsInParent().getCenterX();
@@ -181,7 +181,7 @@ public class MainPageController {
         @Override
         public void handle(MouseEvent mouseEvent) {
             Text currentText = (Text) mouseEvent.getSource();
-            if(mouseEvent.getButton() == MouseButton.SECONDARY){
+            if (mouseEvent.getButton() == MouseButton.SECONDARY) {
                 currentText.setLayoutX(mouseEvent.getSceneX() - 360);
                 currentText.setLayoutY(mouseEvent.getSceneY() - 70);
             }
@@ -193,8 +193,8 @@ public class MainPageController {
         public void handle(MouseEvent mouseEvent) {
             int indexCurrentPane = processPane.getSelectionModel().getSelectedIndex();
             infoElements.getPanes().removeAll(infoElements.getPanes());
-            for(BlockHierarchy blockHierarchy : blocksHierarchy) {
-                if(blockHierarchy.ID_PANE == indexCurrentPane) addInfoBlocks(blockHierarchy);
+            for (BlockHierarchy blockHierarchy : blocksHierarchy) {
+                if (blockHierarchy.ID_PANE == indexCurrentPane) addInfoBlocks(blockHierarchy);
             }
         }
     };
@@ -206,8 +206,7 @@ public class MainPageController {
                 for (Button button : blocksHierarchy) {
                     button.setStyle("");
                 }
-            }
-            else if (keyEvent.getCode() == KeyCode.ALT){
+            } else if (keyEvent.getCode() == KeyCode.ALT) {
                 currentBlockHierarchy.setStyle("-fx-background-color: red;");
             }
         }
@@ -231,17 +230,17 @@ public class MainPageController {
         @Override
         public void handle(MouseEvent mouseEvent) {
             Condition condition = new Condition();
-            for (BlockHierarchy block: blocksHierarchy){
+            for (BlockHierarchy block : blocksHierarchy) {
                 if (block.getStyle() == "-fx-background-color: red;"
-                        && block.ID_PANE == processPane.getSelectionModel().getSelectedIndex()){
+                        && block.ID_PANE == processPane.getSelectionModel().getSelectedIndex()) {
                     ListWeight.add(formatNumberMethod(block));
                     System.out.println(ListWeight.get(ListWeight.indexOf(formatNumberMethod(block))));
                 }
             }
             try {
-                if (processPane.getSelectionModel().getSelectedIndex()==0)
-                    Ob1=condition.addCondition(blocksHierarchy, ListWeight);
-                else Ob3=condition.addCondition(blocksHierarchy, ListWeight);
+                if (processPane.getSelectionModel().getSelectedIndex() == 0)
+                    Ob1 = condition.addCondition(blocksHierarchy, ListWeight);
+                else Ob3 = condition.addCondition(blocksHierarchy, ListWeight);
                 negativeOrPositiveOb();
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -251,7 +250,7 @@ public class MainPageController {
         }
     };
 
-    boolean compareHeight(BlockHierarchy block1, BlockHierarchy block2){
+    boolean compareHeight(BlockHierarchy block1, BlockHierarchy block2) {
         return block1.getBoundsInParent().getCenterY() < block2.getBoundsInParent().getCenterY();
     }
 
@@ -278,18 +277,18 @@ public class MainPageController {
     }
 
     void updateArrow(BlockHierarchy v1, BlockHierarchy v2) {
-        Arrow currentArrow = new Arrow(1, 1 , 1, 1);
+        Arrow currentArrow = new Arrow(1, 1, 1, 1);
         Pane currentPane = (Pane) processPane.getSelectionModel().getSelectedItem().getContent();
         double startX, startY, endX, endY;
-        for(Arrow arrow : arrows){
-            if(arrow.start == v1 && arrow.end == v2 || arrow.start == v2 && arrow.end == v1){
+        for (Arrow arrow : arrows) {
+            if (arrow.start == v1 && arrow.end == v2 || arrow.start == v2 && arrow.end == v1) {
                 currentArrow = arrow;
                 break;
             }
         }
         arrows.remove(currentArrow);
         currentPane.getChildren().remove(currentArrow);
-        if(compareHeight(v1, v2)) {
+        if (compareHeight(v1, v2)) {
             startX = v1.getBoundsInParent().getCenterX();
             startY = v1.getBoundsInParent().getCenterY() + v1.getHeight() / 2;
             endX = v2.getBoundsInParent().getCenterX();
@@ -326,9 +325,9 @@ public class MainPageController {
         weights.add(blocksHierarchy.indexOf(blockHierarchy), newWeight);
     }
 
-    void addInfoBlocks(BlockHierarchy blockHierarchy){
+    void addInfoBlocks(BlockHierarchy blockHierarchy) {
         TitledPane titledPane = new TitledPane();
-        titledPane.setText(blockHierarchy.ID_PANE  + " : " + blockHierarchy.getText());
+        titledPane.setText(blockHierarchy.ID_PANE + " : " + blockHierarchy.getText());
         Pane pane = new Pane();
         pane.setMinHeight(180);
         pane.setMinWidth(100);
@@ -362,12 +361,12 @@ public class MainPageController {
         deleteButton.getStyleClass().add("save-button");
         saveInfoButton.setOnAction(actionEvent -> {
             // Изменение веса блока                                                     
-            if(!weightTextField.getText().isEmpty()){                                   
+            if (!weightTextField.getText().isEmpty()) {
                 weights.get(blockHierarchy.ID).text.setText("w: " + weightTextField.getText());
                 weightTextField.setText("");
-            }                                                                           
+            }
             // Изменение имени блока
-            if(!nameTextField.getText().isEmpty()) {
+            if (!nameTextField.getText().isEmpty()) {
                 blockHierarchy.setText(nameTextField.getText());
                 titledPane.setText(blockHierarchy.ID_PANE + " : " + nameTextField.getText());
                 nameTextField.setText("");
@@ -381,8 +380,8 @@ public class MainPageController {
             currentPane.getChildren().remove(currentWeight.text);
             weights.remove(currentWeight);
             blocksHierarchy.remove(blockHierarchy);
-            for(TitledPane currentTitledPane: infoElements.getPanes()) {
-                if(currentTitledPane.getText().equals(blockHierarchy.ID_PANE + " : " + blockHierarchy.getText())) {
+            for (TitledPane currentTitledPane : infoElements.getPanes()) {
+                if (currentTitledPane.getText().equals(blockHierarchy.ID_PANE + " : " + blockHierarchy.getText())) {
                     infoElements.getPanes().remove(currentTitledPane);
                     break;
                 }
@@ -393,22 +392,22 @@ public class MainPageController {
         infoElements.getPanes().add(titledPane);
     }
 
-    public void setCalculateWeight(double[] vectorWeight){
-        int count=0;
-        int indexActiveTab=processPane.getSelectionModel().getSelectedIndex();
-        for (BlockHierarchy blockHierarchy: blocksHierarchy){
-            if (blockHierarchy.getStyle()=="-fx-background-color: red;" && blockHierarchy.ID_PANE==indexActiveTab){
+    public void setCalculateWeight(double[] vectorWeight) {
+        int count = 0;
+        int indexActiveTab = processPane.getSelectionModel().getSelectedIndex();
+        for (BlockHierarchy blockHierarchy : blocksHierarchy) {
+            if (blockHierarchy.getStyle() == "-fx-background-color: red;" && blockHierarchy.ID_PANE == indexActiveTab) {
                 int index = blocksHierarchy.indexOf(blockHierarchy);
-                weights.get(index).text.setText("w: " + Double.toString(Math.round(vectorWeight[count]*100)/100.0));
+                weights.get(index).text.setText("w: " + Double.toString(Math.round(vectorWeight[count] * 100) / 100.0));
                 count++;
             }
         }
     }
 
-    private boolean disableOrEnablePaintArrow(){
+    private boolean disableOrEnablePaintArrow() {
         boolean flagDisableOrEnablePaint = true;
-        for (Button button: blocksHierarchy){
-            if (button.getStyle()=="-fx-background-color: red;") {
+        for (Button button : blocksHierarchy) {
+            if (button.getStyle() == "-fx-background-color: red;") {
                 flagDisableOrEnablePaint = false;
                 break;
             }
@@ -416,9 +415,9 @@ public class MainPageController {
         return flagDisableOrEnablePaint;
     }
 
-    public void negativeOrPositiveOb(){
-        if (Ob1!=null && Ob3!=null){
-            if(Ob3<Ob1){
+    public void negativeOrPositiveOb() {
+        if (Ob1 != null && Ob3 != null) {
+            if (Ob3 < Ob1) {
                 Alert alertError = new Alert(Alert.AlertType.ERROR);
                 alertError.setTitle("Error");
                 alertError.setHeaderText("Обобщение ухудшилось.");
@@ -428,27 +427,27 @@ public class MainPageController {
         }
     }
 
-    public double formatNumberMethod(BlockHierarchy block){
+    public double formatNumberMethod(BlockHierarchy block) {
         int index = String.valueOf(weights.get(blocksHierarchy.
                 indexOf(block)).text.getText()).indexOf(",");
-        if (index == -1){
+        if (index == -1) {
             index = String.valueOf(weights.get(blocksHierarchy.
                     indexOf(block)).text.getText()).indexOf("/");
-            if (index == -1){
+            if (index == -1) {
                 return Double.parseDouble(String.valueOf(weights.get(blocksHierarchy.
                         indexOf(block)).text.getText()).substring(3));
-            } else{
+            } else {
                 return Double.parseDouble(String.valueOf(weights.get(blocksHierarchy.
-                        indexOf(block)).text.getText()).substring(3, index))/
+                        indexOf(block)).text.getText()).substring(3, index)) /
                         Double.parseDouble(String.valueOf(weights.get(blocksHierarchy.indexOf(block))
-                                .text.getText()).substring(index+1, (weights
+                                .text.getText()).substring(index + 1, (weights
                                 .get(blocksHierarchy.indexOf(block)).text.getText()).length()));
             }
-        }else{
+        } else {
             return Double.parseDouble(String.valueOf(weights.get(blocksHierarchy.
-                    indexOf(block)).text.getText()).substring(3, index) +"."+ weights.get(blocksHierarchy.
-                            indexOf(block)).text.getText().substring(index + 1, ((String) weights.get(blocksHierarchy.
-                            indexOf(block)).text.getText()).length()));
+                    indexOf(block)).text.getText()).substring(3, index) + "." + weights.get(blocksHierarchy.
+                    indexOf(block)).text.getText().substring(index + 1, ((String) weights.get(blocksHierarchy.
+                    indexOf(block)).text.getText()).length()));
         }
     }
 

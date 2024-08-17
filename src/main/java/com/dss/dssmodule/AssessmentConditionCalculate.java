@@ -18,9 +18,9 @@ import java.util.List;
 
 public class AssessmentConditionCalculate {
     private static List<Button> dimensionMatrix = new ArrayList<Button>();
-    private static List<Label> labelName=new ArrayList<Label>();
-    private static List<Label> labelNameForWeight=new ArrayList<Label>();
-    private static List<Label> labelNameClone=new ArrayList<Label>();
+    private static List<Label> labelName = new ArrayList<Label>();
+    private static List<Label> labelNameForWeight = new ArrayList<Label>();
+    private static List<Label> labelNameClone = new ArrayList<Label>();
     public TextField textFieldCalculateArray[][];
     public static List<BlockHierarchy> blocksHierarchy = new ArrayList<BlockHierarchy>();
     public boolean flag = true;

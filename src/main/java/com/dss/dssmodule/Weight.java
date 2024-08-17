@@ -10,7 +10,8 @@ public class Weight extends Circle {
 
     Text text = new Text("w:");
     final private static int DEFAULT_RADIUS = 25;
-    Weight(double centerX, double centerY){
+
+    Weight(double centerX, double centerY) {
         super(centerX, centerY, DEFAULT_RADIUS, Color.rgb(194, 194, 194, 0.3));
         viewOrderProperty().set(-2);
         text.setLayoutX(centerX - 17);

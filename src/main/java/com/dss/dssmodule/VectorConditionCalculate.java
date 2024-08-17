@@ -13,6 +13,7 @@ import javafx.scene.layout.*;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +21,13 @@ import java.util.concurrent.CompletableFuture;
 
 public class VectorConditionCalculate {
     private static List<String> dimensionMatrix = new ArrayList<String>();
-    private static List<Label> labelName=new ArrayList<Label>();
-    private static List<Label> labelNameForWeight=new ArrayList<Label>();
-    private static List<Label> labelNameClone=new ArrayList<Label>();
+    private static List<Label> labelName = new ArrayList<Label>();
+    private static List<Label> labelNameForWeight = new ArrayList<Label>();
+    private static List<Label> labelNameClone = new ArrayList<Label>();
     public TextField textFieldCalculateArray[][];
     public static List<String> blocksHierarchy = new ArrayList<String>();
-    public boolean flag=true;
-    public static double IO=0.0;
+    public boolean flag = true;
+    public static double IO = 0.0;
     public static double vectorWeight[];
     Stage stage2 = new Stage();
     int size;
@@ -42,6 +43,7 @@ public class VectorConditionCalculate {
     Button buttonExit;
 
     private CompletableFuture<Double> resultFuture;
+
     public double[] calculateMethod(List<String> blocksHierarchy) throws IOException {
         this.blocksHierarchy = blocksHierarchy;
         FXMLLoader loaderCalculate = new FXMLLoader(getClass().getResource("condition-calculate-page.fxml"));
@@ -56,8 +58,8 @@ public class VectorConditionCalculate {
         return vectorWeight;
     }
 
-    public void paintMethod(){
-        if (labelName.size() != 0){
+    public void paintMethod() {
+        if (labelName.size() != 0) {
             labelName.removeAll(labelName);
             labelNameClone.removeAll(labelNameClone);
             dimensionMatrix.removeAll(dimensionMatrix);
@@ -71,7 +73,7 @@ public class VectorConditionCalculate {
             labelNameForWeight.add(new Label(str));
         }
 
-        for (int i = 0; i < labelName.size(); i++){
+        for (int i = 0; i < labelName.size(); i++) {
             labelName.get(i).getStyleClass().add("text-gridpane");
             labelNameClone.get(i).getStyleClass().add("text-gridpane");
             labelNameForWeight.get(i).getStyleClass().add("text-gridpane");
@@ -102,7 +104,7 @@ public class VectorConditionCalculate {
             gridResult.getChildren().clear();
             double lyamdaMax = 0.0;
             double sumLaymda = 0.0;
-            IO=0.0;
+            IO = 0.0;
             final double MIOCONST[] = {0.00, 0.00, 0.58, 0.90, 1.12};
             double OO = 0.0;
             double ProizVectorLine = 1;
@@ -110,25 +112,25 @@ public class VectorConditionCalculate {
             double GeometryMean[] = new double[dimensionMatrix.size()];
             vectorWeight = new double[dimensionMatrix.size()];
             double MatrixDouble[][] = new double[dimensionMatrix.size()][dimensionMatrix.size()];
-            boolean flagTry=true;
+            boolean flagTry = true;
             for (int i = 0; i < dimensionMatrix.size(); i++) {
                 for (int j = 0; j < dimensionMatrix.size(); j++) {
                     try {
                         MatrixDouble[i][j] = Double.parseDouble(textFieldCalculateArray[i][j].getText());
                     } catch (NumberFormatException e) {
                         int number = textFieldCalculateArray[i][j].getText().indexOf("/");
-                        if (number == -1){
+                        if (number == -1) {
                             number = textFieldCalculateArray[i][j].getText().indexOf(",");
-                            flagTry=false;
+                            flagTry = false;
                         }
                         try {
-                            if(flagTry) {
+                            if (flagTry) {
                                 MatrixDouble[i][j] = Double.parseDouble(textFieldCalculateArray[i][j].getText()
                                         .substring(0, number)) / Double.parseDouble(textFieldCalculateArray[i][j].getText()
                                         .substring(number + 1, ((String) textFieldCalculateArray[i][j].getText()).length()));
-                            } else{
-                                MatrixDouble[i][j]=Double.parseDouble((String) (textFieldCalculateArray[i][j].getText()
-                                        .substring(0, number) +"."+ textFieldCalculateArray[i][j].getText()
+                            } else {
+                                MatrixDouble[i][j] = Double.parseDouble((String) (textFieldCalculateArray[i][j].getText()
+                                        .substring(0, number) + "." + textFieldCalculateArray[i][j].getText()
                                         .substring(number + 1, ((String) textFieldCalculateArray[i][j].getText()).length())));
                             }
 
@@ -145,59 +147,58 @@ public class VectorConditionCalculate {
                     ProizVectorLine *= MatrixDouble[j][i];
                 }
 
-                GeometryMean[i] =Math.pow(ProizVectorLine, ((double)1/GeometryMean.length));
-                sumVectorPriority+=GeometryMean[i];
+                GeometryMean[i] = Math.pow(ProizVectorLine, ((double) 1 / GeometryMean.length));
+                sumVectorPriority += GeometryMean[i];
                 ProizVectorLine = 1;
 
             }
 
-            for (int i=0; i<GeometryMean.length; i++){
-                vectorWeight[i]=GeometryMean[i]/sumVectorPriority;
+            for (int i = 0; i < GeometryMean.length; i++) {
+                vectorWeight[i] = GeometryMean[i] / sumVectorPriority;
             }
 
-            for(int i=0; i<labelName.size();i++){
-                for (int j=0;j<labelName.size();j++){
-                    sumLaymda +=MatrixDouble[j][i]*vectorWeight[j];
+            for (int i = 0; i < labelName.size(); i++) {
+                for (int j = 0; j < labelName.size(); j++) {
+                    sumLaymda += MatrixDouble[j][i] * vectorWeight[j];
                 }
-                lyamdaMax+=sumLaymda;
-                sumLaymda=0;
+                lyamdaMax += sumLaymda;
+                sumLaymda = 0;
             }
             for (int i = 0; i < labelName.size(); i++) {
                 gridResult.add(labelNameForWeight.get(i), 0, i);
-                Label label = new Label(Double.toString(Math.round(vectorWeight[i]*1000)/1000.0));
+                Label label = new Label(Double.toString(Math.round(vectorWeight[i] * 1000) / 1000.0));
                 label.getStyleClass().add("text-gridpane");
                 gridResult.add(label, 1, i);
             }
-            IO=(lyamdaMax-labelName.size())/(labelName.size()-1);
-            if(labelName.size()<3 | labelName.size()>=6) {
+            IO = (lyamdaMax - labelName.size()) / (labelName.size() - 1);
+            if (labelName.size() < 3 | labelName.size() >= 6) {
                 OO = 0;
+            } else {
+                OO = IO / MIOCONST[labelName.size() - 1];
             }
-            else{
-                OO=IO/MIOCONST[labelName.size()-1];
-            }
-            lyamdaMax=Math.round(lyamdaMax*1000)/1000.0;
-            IO=Math.round(IO*1000)/1000.0;
-            OO=Math.round(OO*1000)/1000.0;
+            lyamdaMax = Math.round(lyamdaMax * 1000) / 1000.0;
+            IO = Math.round(IO * 1000) / 1000.0;
+            OO = Math.round(OO * 1000) / 1000.0;
             Label label = new Label("λmax");
             label.getStyleClass().add("text-gridpane");
             gridResult.add(label, 0, labelName.size());
             label = new Label(Double.toString(lyamdaMax));
             label.getStyleClass().add("text-gridpane");
-            gridResult.add(label, 1,labelName.size());
-            label =new Label("ИО");
+            gridResult.add(label, 1, labelName.size());
+            label = new Label("ИО");
             label.getStyleClass().add("text-gridpane");
-            gridResult.add(label, 0, labelName.size()+1);
+            gridResult.add(label, 0, labelName.size() + 1);
             label = new Label(Double.toString(IO));
             label.getStyleClass().add("text-gridpane");
-            gridResult.add(label, 1, labelName.size()+1);
-            label=new Label("OO");
+            gridResult.add(label, 1, labelName.size() + 1);
+            label = new Label("OO");
             label.getStyleClass().add("text-gridpane");
-            gridResult.add(label, 0, labelName.size()+2);
-            label=new Label(Double.toString(OO));
+            gridResult.add(label, 0, labelName.size() + 2);
+            label = new Label(Double.toString(OO));
             label.getStyleClass().add("text-gridpane");
-            gridResult.add(label, 1, labelName.size()+2);
+            gridResult.add(label, 1, labelName.size() + 2);
 
-            if (IO>0.10){
+            if (IO > 0.10) {
                 Alert alertError = new Alert(Alert.AlertType.ERROR);
                 alertError.setTitle("Error");
                 alertError.setHeaderText("Значение ОО превышает 0.1");

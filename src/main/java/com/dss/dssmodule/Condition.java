@@ -75,7 +75,7 @@ public class Condition {
         }
     };
 
-    public void initialize(){
+    public void initialize() {
         addButton.setOnMouseClicked(addClick);
         quitButton.setOnMouseClicked(quitClick);
 
