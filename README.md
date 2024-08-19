@@ -1,2 +1,2 @@
-# Модуль системы поддержки принятия решений (decision support system)
+# Модуль системы поддержки принятия решений (Decision support system)
 
