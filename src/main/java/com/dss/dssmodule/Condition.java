@@ -40,7 +40,7 @@ public class Condition {
         Stage stageCondition = new Stage();
         FXMLLoader loadercondition = new FXMLLoader(getClass().getResource("condition-page.fxml"));
         AnchorPane rootCondition = loadercondition.load();
-        stageCondition.setTitle("АПМАИ:Добавление переменных состояния");
+        stageCondition.setTitle("DSS:Добавление переменных состояния");
         stageCondition.setResizable(false);
         stageCondition.getIcons().add(new Image(getClass().getResource("LOGO.png").toExternalForm()));
         Scene sceneCondition = new Scene(rootCondition, 600, 400);

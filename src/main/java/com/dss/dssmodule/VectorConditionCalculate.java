@@ -48,7 +48,7 @@ public class VectorConditionCalculate {
         this.blocksHierarchy = blocksHierarchy;
         FXMLLoader loaderCalculate = new FXMLLoader(getClass().getResource("condition-calculate-page.fxml"));
         AnchorPane rootCalculate = loaderCalculate.load();
-        stage2.setTitle("АПМАИ:Расчет важности");
+        stage2.setTitle("DSS:Расчет важности");
         stage2.setResizable(false);
         stage2.getIcons().add(new Image(getClass().getResource("LOGO.png").toExternalForm()));
         Scene sceneCalculate = new Scene(rootCalculate, 1030, 635);
